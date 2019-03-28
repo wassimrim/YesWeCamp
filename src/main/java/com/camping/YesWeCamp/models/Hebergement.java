@@ -1,10 +1,21 @@
 package com.camping.YesWeCamp.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+@JsonIdentityInfo(
+        scope = Hebergement.class,
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 @Entity
 @Table(name="hebergement")
 public class Hebergement {
@@ -17,10 +28,17 @@ public class Hebergement {
 	private String numTel;
 	private String type;
 	private int capacite;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="evenement_id")
+	private Evenement evenement;
+	
 	public Hebergement() {
 		super();
 	}
-	public Hebergement(Long id, String labelle, String adresse, String numTel, String type, int capacite) {
+	
+	public Hebergement(Long id, String labelle, String adresse, String numTel, String type, int capacite,
+			Evenement evenement) {
 		super();
 		this.id = id;
 		this.labelle = labelle;
@@ -28,7 +46,9 @@ public class Hebergement {
 		this.numTel = numTel;
 		this.type = type;
 		this.capacite = capacite;
+		this.evenement = evenement;
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -63,6 +83,21 @@ public class Hebergement {
 	public void setCapacite(int capacite) {
 		this.capacite = capacite;
 	}
+
+	public Evenement getEvenement() {
+		return evenement;
+	}
+
+	public void setEvenement(Evenement evenemet) {
+		this.evenement = evenemet;
+	}
+
+	@Override
+	public String toString() {
+		return "Hebergement [id=" + id + ", labelle=" + labelle + ", adresse=" + adresse + ", numTel=" + numTel
+				+ ", type=" + type + ", capacite=" + capacite + ", evenement=" + evenement + "]";
+	}
+	
 	
 	
 

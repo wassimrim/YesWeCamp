@@ -1,13 +1,24 @@
 package com.camping.YesWeCamp.models;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo( scope = User.class,
+generator = ObjectIdGenerators.PropertyGenerator.class,
+property = "id"
+)
 @Entity
 @Table(name="user")
 public class User {
@@ -22,10 +33,21 @@ public class User {
 	private String numTel;
 	private LocalDate dateNaissance;
 	private String role;
-	/* relation avec table image*/
+	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	private Set<Image> image;
+
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<InscriptionUserEvenement>  inscription;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Article> article;
+	
+	
 	public User() {
 		super();
 	}
+	
 	public User(Long id, String nom, String prenom, String mail, String numTel, LocalDate dateNaissance, String role) {
 		super();
 		this.id = id;
@@ -35,7 +57,9 @@ public class User {
 		this.numTel = numTel;
 		this.dateNaissance = dateNaissance;
 		this.role = role;
+		this.inscription=new HashSet<>();
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -76,6 +100,40 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public Set<Image> getImage() {
+		return image;
+	}
+
+	public void setImage(Set<Image> image) {
+		this.image = image;
+	}
+
+	public Set<InscriptionUserEvenement> getInscription() {
+		return inscription;
+	}
+
+	public void setInscription(Set<InscriptionUserEvenement> inscription) {
+		this.inscription = inscription;
+	}
+
+	public Set<Article> getArticle() {
+		return article;
+	}
+
+	public void setArticle(Set<Article> article) {
+		this.article = article;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", numTel=" + numTel
+				+ ", dateNaissance=" + dateNaissance + ", role=" + role + ", image=" + image + ", inscription="
+				+ inscription + ", article=" + article + "]";
+	}
+	
+	
+	
 	
 	
 	
