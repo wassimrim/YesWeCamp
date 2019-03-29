@@ -12,14 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo( scope = Circuit.class,
-generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id"
-)
+
 @Entity
 @Table(name = "circuit")
 public class Circuit {
@@ -31,12 +30,14 @@ public class Circuit {
 	private String type;
 	
 	@OneToMany(mappedBy="circuit",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Set<Image> image;
 
 	
 	
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
+	@JsonManagedReference
 	private Evenement evenement;
 	
 	public Circuit() {

@@ -8,14 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(
-        scope = Hebergement.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
+
 @Entity
 @Table(name="hebergement")
 public class Hebergement {
@@ -31,6 +29,7 @@ public class Hebergement {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="evenement_id")
+	@JsonManagedReference
 	private Evenement evenement;
 	
 	public Hebergement() {

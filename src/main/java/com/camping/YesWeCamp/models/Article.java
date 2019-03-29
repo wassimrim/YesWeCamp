@@ -11,14 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo( scope = Article.class,
-generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id"
-)
+
 @Entity
 @Table(name = "article")
 public class Article {
@@ -32,9 +31,11 @@ public class Article {
 	private int quantite;
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonManagedReference
 	private User user;
 	
 	@OneToMany(targetEntity=Image.class,mappedBy="article",fetch=FetchType.EAGER)
+	@JsonBackReference
 	private Set<Image> image;
 	
 

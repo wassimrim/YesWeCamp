@@ -11,14 +11,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo( scope = Materiel.class,
-generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id"
-)
 @Entity
 @Table(name = "materiel")
 public class Materiel {
@@ -30,10 +28,12 @@ public class Materiel {
 	
 	
 	@OneToMany(targetEntity=Image.class,mappedBy="materiel",fetch=FetchType.EAGER)
+	@JsonBackReference
 	private Set<Image> image;
 	
 	@ManyToOne
 	@JoinColumn(name="categorie_id")
+	@JsonManagedReference
 	private Categorie categorie;
 	
 	/* liaison categorie*/

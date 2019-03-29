@@ -7,16 +7,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(
-        scope = Image.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
+
 @Entity
 @Table(name = "image")
 public class Image {
@@ -26,34 +24,40 @@ public class Image {
 	private Long id;
 	private String labelle;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
+	@JsonManagedReference
 	private User user;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
+	@JsonManagedReference
 	private Evenement evenement;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="circuit_id")
+	@JsonManagedReference
 	private Circuit circuit;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="article_id")
+	@JsonManagedReference
 	private Article article;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="activite_id")
+	@JsonManagedReference
 	private Activite activite;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name="materiel_id")
+	@JsonManagedReference
 	private Materiel materiel;
 	
 	public Image() {

@@ -6,19 +6,21 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.persistence.JoinColumn;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo( scope = User.class,
-generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id"
-)
+
 @Entity
 @Table(name="user")
 public class User {
@@ -34,13 +36,24 @@ public class User {
 	private LocalDate dateNaissance;
 	private String role;
 	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	@JsonBackReference
 	private Set<Image> image;
 
 	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<InscriptionUserEvenement>  inscription;
 	
+	    @ManyToMany(fetch = FetchType.LAZY,
+	            cascade = {
+	                CascadeType.PERSIST,
+	                CascadeType.MERGE
+	            })
+	    @JsonManagedReference
+	    @JoinTable(name = "inscription",
+	            joinColumns = { @JoinColumn(name = "user_id") },
+	            inverseJoinColumns = { @JoinColumn(name = "evenement_id") })
+	    private Set<Evenement> evenements = new HashSet<>();
+
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonBackReference
 	private Set<Article> article;
 	
 	
@@ -48,7 +61,7 @@ public class User {
 		super();
 	}
 	
-	public User(Long id, String nom, String prenom, String mail, String numTel, LocalDate dateNaissance, String role) {
+	/*public User(Long id, String nom, String prenom, String mail, String numTel, LocalDate dateNaissance, String role) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -58,12 +71,31 @@ public class User {
 		this.dateNaissance = dateNaissance;
 		this.role = role;
 		this.inscription=new HashSet<>();
+	}*/
+	
+	
+
+
+	
+	public User(Long id, String nom, String prenom, String mail, String numTel, LocalDate dateNaissance, String role,
+			Set<Image> image, Set<Evenement> evenements, Set<Article> article) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.numTel = numTel;
+		this.dateNaissance = dateNaissance;
+		this.role = role;
+		this.image = image;
+		this.evenements = evenements;
+		this.article = article;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
-	
 	public String getNom() {
 		return nom;
 	}
@@ -109,12 +141,14 @@ public class User {
 		this.image = image;
 	}
 
-	public Set<InscriptionUserEvenement> getInscription() {
-		return inscription;
+	
+
+	public Set<Evenement> getEvenements() {
+		return evenements;
 	}
 
-	public void setInscription(Set<InscriptionUserEvenement> inscription) {
-		this.inscription = inscription;
+	public void setEvenements(Set<Evenement> evenements) {
+		this.evenements = evenements;
 	}
 
 	public Set<Article> getArticle() {
@@ -125,12 +159,15 @@ public class User {
 		this.article = article;
 	}
 
+	
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", numTel=" + numTel
-				+ ", dateNaissance=" + dateNaissance + ", role=" + role + ", image=" + image + ", inscription="
-				+ inscription + ", article=" + article + "]";
+				+ ", dateNaissance=" + dateNaissance + ", role=" + role + ", image=" + image + ", evenements="
+				+ evenements + ", article=" + article + "]";
 	}
+
 	
 	
 	

@@ -8,14 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo( scope = Categorie.class,
-generator = ObjectIdGenerators.PropertyGenerator.class,
-property = "id"
-)
+
 @Entity
 @Table(name = "categorie")
   public class Categorie {
@@ -25,9 +24,11 @@ property = "id"
 	private Long id;
 	private String labelle;
 	@OneToMany(mappedBy="categorie")
+	@JsonBackReference
 	private Set<CategerorieEvenement> categorieEvenement;
 	
 	@OneToMany(mappedBy="categorie")
+	@JsonBackReference
 	private Set<Materiel> materiel;
 	
 	

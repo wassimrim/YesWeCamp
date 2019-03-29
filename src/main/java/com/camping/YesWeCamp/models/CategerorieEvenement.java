@@ -8,15 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(
-        scope = CategerorieEvenement.class,
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "categorie"
-)
 @Entity
 @Table(name="categorie_evenement")
 public class CategerorieEvenement implements Serializable{
@@ -28,9 +25,11 @@ public class CategerorieEvenement implements Serializable{
 	@Id
 	@ManyToOne
 	@JoinColumn(name="categorie_id")
+	@JsonManagedReference
 	private Categorie categorie;
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
+	@JsonManagedReference
 	private Evenement evenement;
 	
 	

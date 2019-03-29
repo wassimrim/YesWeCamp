@@ -42,17 +42,20 @@ public class ImageService {
 
 	}
 
-	public Image updateImage(Long id,Image image) {
-		
-		
+	public Image updateImage(Long id, Image image) {
+
 		Image imageFound = imageRepository.findById(id).get();
-		
-		
+
 		imageFound.setLabelle(image.getLabelle());
-		
+
 		imageRepository.save(imageFound);
-		
+
 		return imageFound;
+	}
+
+	public List<Image> getImagesByUserId(Long id) {
+		List<Image> listImages = imageRepository.findByUser(id.toString());
+		return listImages;
 	}
 
 }
