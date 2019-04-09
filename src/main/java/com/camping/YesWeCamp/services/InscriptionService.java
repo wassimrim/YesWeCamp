@@ -1,78 +1,55 @@
-/*package com.camping.YesWeCamp.services;
+package com.camping.YesWeCamp.services;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.camping.YesWeCamp.Repository.EvenementRestRepository;
-import com.camping.YesWeCamp.Repository.UserRestRepository;
+import com.camping.YesWeCamp.Repository.InscriptionRestRepository;
 import com.camping.YesWeCamp.models.Evenement;
+import com.camping.YesWeCamp.models.Inscription;
 import com.camping.YesWeCamp.models.User;
 
 @Component
 public class InscriptionService {
 
-	@Autowired
-	private final UserRestRepository userRestRepository;
-	@Autowired
-	private final EvenementRestRepository evenementRestRepository;
+	private final InscriptionRestRepository inscriptionRepository;
 
-	public InscriptionService(UserRestRepository userRestRepository,EvenementRestRepository evenementRestRepository) {
+	public InscriptionService(InscriptionRestRepository inscriptionRepository) {
 		super();
-		this.userRestRepository = userRestRepository;
-		this.evenementRestRepository=evenementRestRepository;
+		this.inscriptionRepository = inscriptionRepository;
 	}
 
-	public User addInscriptionUserEvenement(Long userId,Long evenementId) {
-		
-		
-	Optional<User> user= userRestRepository.findById(userId);
-	Optional<Evenement> evenement = evenementRestRepository.findById(evenementId);
-		user.get().getEvenements().add(evenement.get());
-		evenement.get().getUsers().add(user.get());
-		
-		
-		return userRestRepository.save(user.get());
+	public Inscription addInscription(Inscription inscription) {
+		return inscriptionRepository.save(inscription);
 	}
 
-	public Optional<List<User>> getAllInscriptions() {
-		List users = new ArrayList<>();
+	public Optional<List<Inscription>> getAllInscription() {
+		List<Inscription> inscriptions = new ArrayList<Inscription>();
 
-		for (User user : userRepository.findAll()) {
-			users.add(user);
+		for (Inscription inscription : inscriptionRepository.findAll()) {
+			inscriptions.add(inscription);
 		}
-		return Optional.of(users);
+		return Optional.of(inscriptions);
 	}
 
-	public Optional<User> getUserById(Long id) {
-		return userRepository.findById(id);
+	public Optional<Inscription> getInscriptionByUserId(User user) {
+		return inscriptionRepository.findByUser(user);
 	}
 
-	public void deleteUser(Long id) {
+	public Optional<Inscription> getInscriptionByEvenementId(Evenement evenement) {
+		return inscriptionRepository.findByEvenement(evenement);
+	}
 
-		userRepository.deleteById(id);
+	public Optional< Inscription> getInscriptionByUserIdAndEvenementId(User user,Evenement evenement) {
+		return inscriptionRepository.findByUserAndEvenement(user, evenement);
+	}
+
+	public void deleteInscriptionByUserAndEvenement(User user,Evenement evenement) {
+
+		inscriptionRepository.deleteByUserAndEvenement(user, evenement);
 
 	}
 
-	public User updateUser(Long id,User user) {
-		
-		
-		User userFound = userRepository.findById(id).get();
-		
-		
-		userFound.setNom(user.getNom());
-		userFound.setPrenom(user.getPrenom());
-		userFound.setMail(user.getMail());
-		userFound.setNumTel(user.getNumTel());
-		userFound.setDateNaissance(user.getDateNaissance());
-		userFound.setRole(user.getRole());
-		
-		userRepository.save(userFound);
-		
-		return userFound;
-	}
+	
 
-}*/
+}

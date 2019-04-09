@@ -1,26 +1,21 @@
 package com.camping.YesWeCamp.models;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Entity
 @Table(name = "evenement")
+//@JsonIgnoreProperties({"image","hebergement","circuit","categorieEvenement","inscription","activite"})
 public class Evenement {
 
 	@Id
@@ -47,9 +42,10 @@ public class Evenement {
 	@JsonBackReference
 	private Set<CategerorieEvenement> categorieEvenement;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "evenements")
+	
+	@OneToMany(mappedBy = "evenement")
 	@JsonBackReference
-	private Set<User> users = new HashSet<>();
+	private Set<Inscription> inscription;
 
 	@OneToMany(mappedBy = "evenement")
 	@JsonBackReference
@@ -58,15 +54,6 @@ public class Evenement {
 	public Evenement() {
 		super();
 	}
-
-	/*
-	 * public Evenement(Long id, String labelle, String description, String type,
-	 * float prix, Hebergement hebergement) { super(); this.id = id; this.labelle =
-	 * labelle; this.description = description; this.type = type; this.prix = prix;
-	 * this.hebergement = hebergement;
-	 * 
-	 * }
-	 */
 
 	public Evenement(Long id, String labelle, String description, String type, float prix, Hebergement hebergement,
 			Set<Image> image, Set<Circuit> circuit, Set<CategerorieEvenement> categorieEvenement,
@@ -120,7 +107,6 @@ public class Evenement {
 		this.prix = prix;
 	}
 
-	
 	public Set<Image> getImage() {
 		return image;
 	}
@@ -160,26 +146,20 @@ public class Evenement {
 	public void setActivite(Set<Activite> activite) {
 		this.activite = activite;
 	}
-	
-	
 
-	public Set<User> getUsers() {
-		return users;
+	public Set<Inscription> getInscription() {
+		return inscription;
 	}
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setInscription(Set<Inscription> inscription) {
+		this.inscription = inscription;
 	}
 
 	@Override
 	public String toString() {
 		return "Evenement [id=" + id + ", labelle=" + labelle + ", description=" + description + ", type=" + type
 				+ ", prix=" + prix + ", hebergement=" + hebergement + ", image=" + image + ", circuit=" + circuit
-				+ ", categorieEvenement=" + categorieEvenement + ", users=" + users + ", activite=" + activite + "]";
+				+ ", categorieEvenement=" + categorieEvenement + ", activite=" + activite + "]";
 	}
-
-	
-	
-
 
 }

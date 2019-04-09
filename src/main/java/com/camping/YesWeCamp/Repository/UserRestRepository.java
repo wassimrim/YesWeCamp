@@ -8,5 +8,7 @@ import com.camping.YesWeCamp.models.User;
 
 @RepositoryRestResource(path="users",collectionResourceRel="users")
 public interface UserRestRepository extends PagingAndSortingRepository<User, Long> {
+	
+	
 
 }
