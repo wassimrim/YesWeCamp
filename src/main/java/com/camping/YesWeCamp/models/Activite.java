@@ -29,12 +29,12 @@ public class Activite {
 	
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Evenement evenement;
 
-	@OneToMany(targetEntity=Image.class,mappedBy="activite",fetch=FetchType.EAGER)
-	@JsonBackReference
-	private Set<Image> image;
+	//@OneToMany(targetEntity=Image.class,mappedBy="activite",fetch=FetchType.EAGER)
+	//@JsonBackReference
+	//private Set<Image> image;
 	
 	public Activite() {
 		super();
@@ -84,7 +84,7 @@ public class Activite {
 
 
 
-	public Set<Image> getImage() {
+	/*public Set<Image> getImage() {
 		return image;
 	}
 
@@ -92,14 +92,14 @@ public class Activite {
 
 	public void setImage(Set<Image> image) {
 		this.image = image;
-	}
+	}*/
 
 
 
 	@Override
 	public String toString() {
 		return "Activite [id=" + id + ", labelle=" + labelle + ", description=" + description + ", evenement="
-				+ evenement + ", image=" + image + "]";
+				+ evenement + "]";
 	}
 	
 	

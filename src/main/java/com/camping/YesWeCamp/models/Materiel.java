@@ -26,13 +26,13 @@ public class Materiel {
 	private String labelle;
 	
 	
-	@OneToMany(targetEntity=Image.class,mappedBy="materiel",fetch=FetchType.EAGER)
-	@JsonBackReference
-	private Set<Image> image;
+	//@OneToMany(targetEntity=Image.class,mappedBy="materiel",fetch=FetchType.EAGER)
+	//@JsonBackReference
+	//private Set<Image> image;
 	
 	@ManyToOne
 	@JoinColumn(name="categorie_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Categorie categorie;
 	
 	/* liaison categorie*/
@@ -73,7 +73,7 @@ public class Materiel {
 
 
 
-
+/*
 	public Set<Image> getImage() {
 		return image;
 	}
@@ -85,7 +85,7 @@ public class Materiel {
 	public void setImage(Set<Image> image) {
 		this.image = image;
 	}
-
+*/
 
 
 
@@ -108,7 +108,7 @@ public class Materiel {
 
 	@Override
 	public String toString() {
-		return "Materiel [id=" + id + ", labelle=" + labelle + ", image=" + image + ", categorie=" + categorie + "]";
+		return "Materiel [id=" + id + ", labelle=" + labelle + ", categorie=" + categorie + "]";
 	}
 	
 	

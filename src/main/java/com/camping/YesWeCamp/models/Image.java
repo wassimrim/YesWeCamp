@@ -25,37 +25,37 @@ public class Image {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private User user;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Evenement evenement;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="circuit_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Circuit circuit;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="article_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Article article;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="activite_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Activite activite;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="materiel_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Materiel materiel;
 	
 	public Image() {

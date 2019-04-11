@@ -28,12 +28,12 @@ public class Article {
 	private int quantite;
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private User user;
 	
-	@OneToMany(targetEntity=Image.class,mappedBy="article",fetch=FetchType.EAGER)
-	@JsonBackReference
-	private Set<Image> image;
+	//@OneToMany(targetEntity=Image.class,mappedBy="article",fetch=FetchType.EAGER)
+	//@JsonBackReference
+	//private Set<Image> image;
 	
 
 	public Article() {
@@ -104,7 +104,7 @@ public class Article {
 
 
 
-	public Set<Image> getImage() {
+	/*public Set<Image> getImage() {
 		return image;
 	}
 
@@ -112,14 +112,14 @@ public class Article {
 
 	public void setImage(Set<Image> image) {
 		this.image = image;
-	}
+	}*/
 
 
 
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", labelle=" + labelle + ", description=" + description + ", prix=" + prix
-				+ ", quantite=" + quantite + ", user=" + user + ", image=" + image + "]";
+				+ ", quantite=" + quantite + ", user=" + user + "]";
 	}
 	
 	

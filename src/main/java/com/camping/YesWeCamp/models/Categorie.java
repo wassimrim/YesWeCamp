@@ -21,13 +21,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Long id;
 	private String labelle;
-	@OneToMany(mappedBy="categorie")
-	@JsonBackReference
-	private Set<CategerorieEvenement> categorieEvenement;
+	//@OneToMany(mappedBy="categorie")
+	//@JsonBackReference
+	//private Set<CategerorieEvenement> categorieEvenement;
 	
-	@OneToMany(mappedBy="categorie")
-	@JsonBackReference
-	private Set<Materiel> materiel;
+	//@OneToMany(mappedBy="categorie")
+	//@JsonBackReference
+	//private Set<Materiel> materiel;
 	
 	
 	
@@ -48,7 +48,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	public Long getId() {
 		return id;
 	}
-	public Set<CategerorieEvenement> getCategorieEvenement() {
+/*	public Set<CategerorieEvenement> getCategorieEvenement() {
 		return categorieEvenement;
 	}
 	public void setCategorieEvenement(Set<CategerorieEvenement> categorieEvenement) {
@@ -60,10 +60,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	public void setMateriel(Set<Materiel> materiel) {
 		this.materiel = materiel;
 	}
+	*/
 	@Override
 	public String toString() {
-		return "Categorie [id=" + id + ", labelle=" + labelle + ", categorieEvenement=" + categorieEvenement
-				+ ", materiel=" + materiel + "]";
+		return "Categorie [id=" + id + ", labelle=" + labelle + "]";
 	}
 	
 	

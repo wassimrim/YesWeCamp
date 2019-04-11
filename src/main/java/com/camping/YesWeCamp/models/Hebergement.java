@@ -29,7 +29,7 @@ public class Hebergement {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="evenement_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Evenement evenement;
 	
 	public Hebergement() {

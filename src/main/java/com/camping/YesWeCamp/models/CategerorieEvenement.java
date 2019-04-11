@@ -21,11 +21,11 @@ public class CategerorieEvenement implements Serializable{
 	@Id
 	@ManyToOne
 	@JoinColumn(name="categorie_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Categorie categorie;
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Evenement evenement;
 	
 	

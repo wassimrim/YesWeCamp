@@ -28,15 +28,15 @@ public class Circuit {
 	private String description;
 	private String type;
 	
-	@OneToMany(mappedBy="circuit",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<Image> image;
+	//@OneToMany(mappedBy="circuit",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	//@JsonBackReference
+	//private Set<Image> image;
 
 	
 	
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
-	@JsonManagedReference
+	//@JsonManagedReference
 	private Evenement evenement;
 	
 	public Circuit() {
@@ -44,12 +44,12 @@ public class Circuit {
 	}
 	
 	
-	public Circuit(Long id, String description, String type, Set<Image> image, Evenement evenement) {
+	public Circuit(Long id, String description, String type, Evenement evenement) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.type = type;
-		this.image = image;
+		//this.image = image;
 		this.evenement = evenement;
 	}
 
@@ -71,7 +71,7 @@ public class Circuit {
 	}
 
 
-	public Set<Image> getImage() {
+/*	public Set<Image> getImage() {
 		return image;
 	}
 
@@ -80,7 +80,7 @@ public class Circuit {
 		this.image = image;
 	}
 
-
+*/
 	public Evenement getEvenement() {
 		return evenement;
 	}
@@ -93,8 +93,7 @@ public class Circuit {
 
 	@Override
 	public String toString() {
-		return "Circuit [id=" + id + ", description=" + description + ", type=" + type + ", image=" + image
-				+ ", evenement=" + evenement + "]";
+		return "Circuit [id=" + id + ", description=" + description + ", type=" + type + " evenement=" + evenement + "]";
 	}
 	
 	

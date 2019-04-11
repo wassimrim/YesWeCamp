@@ -29,17 +29,17 @@ public class User {
 	private String numTel;
 	private LocalDate dateNaissance;
 	private String role;
-	@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
-	@JsonBackReference
-	private Set<Image> image;
+	//@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
+	//@JsonBackReference
+	//private Set<Image> image;
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonBackReference
-	private Set<Article> article;
+	//@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	//@JsonBackReference
+	//private Set<Article> article;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
-	private Set<Inscription> inscription;
+	//@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
+	//@JsonBackReference
+	//private Set<Inscription> inscription;
 	
 	
 	public User() {
@@ -47,8 +47,7 @@ public class User {
 	}
 	
 	
-	public User(Long id, String nom, String prenom, String mail, String numTel, LocalDate dateNaissance, String role,
-			Set<Image> image, Set<Article> article) {
+	public User(Long id, String nom, String prenom, String mail, String numTel, LocalDate dateNaissance, String role) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -57,9 +56,9 @@ public class User {
 		this.numTel = numTel;
 		this.dateNaissance = dateNaissance;
 		this.role = role;
-		this.image = image;
-		this.article = article;
-		this.inscription=new HashSet<>();
+		//this.image = image;
+		//this.article = article;
+		//this.inscription=new HashSet<>();
 	}
 
 	
@@ -103,7 +102,7 @@ public class User {
 		this.role = role;
 	}
 
-	public Set<Image> getImage() {
+	/*public Set<Image> getImage() {
 		return image;
 	}
 
@@ -133,12 +132,12 @@ public class User {
 	public void setInscription(Set<Inscription> inscription) {
 		this.inscription = inscription;
 	}
-
+*/
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", numTel=" + numTel
-				+ ", dateNaissance=" + dateNaissance + ", role=" + role + ", image=" + image + ", article=" + article + "]";
+				+ ", dateNaissance=" + dateNaissance + ", role=" + role +  "]";
 	}
 
 	

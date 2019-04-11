@@ -31,14 +31,14 @@ public class Inscription  {
     @ManyToOne
     @MapsId("user_id")
 	@JoinColumn(name = "user_id")
-	@JsonManagedReference
+	//@JsonManagedReference
     private User user;
 
 	
 	@ManyToOne
 	@MapsId("evenement_id")
 	@JoinColumn(name = "evenement_id")
-	@JsonManagedReference
+	//@JsonManagedReference
     private Evenement evenement;
 
 	private LocalDate dateInscription;

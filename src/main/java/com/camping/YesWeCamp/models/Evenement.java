@@ -26,49 +26,47 @@ public class Evenement {
 	private String type;
 	private float prix;
 
-	@OneToOne(mappedBy = "evenement")
-	@JsonBackReference
+	/*@OneToOne(mappedBy = "evenement")
+	//@JsonBackReference
 	private Hebergement hebergement;
 
 	@OneToMany(targetEntity = Image.class, mappedBy = "evenement", fetch = FetchType.EAGER)
-	@JsonBackReference
+	//@JsonBackReference
 	private Set<Image> image;
 
 	@OneToMany(targetEntity = Circuit.class, mappedBy = "evenement", fetch = FetchType.EAGER)
-	@JsonBackReference
+	//@JsonBackReference
 	private Set<Circuit> circuit;
 
 	@OneToMany(mappedBy = "evenement")
-	@JsonBackReference
+	//@JsonBackReference
 	private Set<CategerorieEvenement> categorieEvenement;
 
 	
 	@OneToMany(mappedBy = "evenement")
-	@JsonBackReference
+	//@JsonBackReference
 	private Set<Inscription> inscription;
 
 	@OneToMany(mappedBy = "evenement")
-	@JsonBackReference
+	//@JsonBackReference
 	private Set<Activite> activite;
-
+*/
 	public Evenement() {
 		super();
 	}
 
-	public Evenement(Long id, String labelle, String description, String type, float prix, Hebergement hebergement,
-			Set<Image> image, Set<Circuit> circuit, Set<CategerorieEvenement> categorieEvenement,
-			Set<Activite> activite) {
+	public Evenement(Long id, String labelle, String description, String type, float prix, Hebergement hebergement) {
 		super();
 		this.id = id;
 		this.labelle = labelle;
 		this.description = description;
 		this.type = type;
 		this.prix = prix;
-		this.hebergement = hebergement;
+	/*	this.hebergement = hebergement;
 		this.image = image;
 		this.circuit = circuit;
 		this.categorieEvenement = categorieEvenement;
-		this.activite = activite;
+		this.activite = activite;*/
 	}
 
 	public String getLabelle() {
@@ -107,7 +105,7 @@ public class Evenement {
 		this.prix = prix;
 	}
 
-	public Set<Image> getImage() {
+/*	public Set<Image> getImage() {
 		return image;
 	}
 
@@ -154,12 +152,11 @@ public class Evenement {
 	public void setInscription(Set<Inscription> inscription) {
 		this.inscription = inscription;
 	}
-
+*/
 	@Override
 	public String toString() {
 		return "Evenement [id=" + id + ", labelle=" + labelle + ", description=" + description + ", type=" + type
-				+ ", prix=" + prix + ", hebergement=" + hebergement + ", image=" + image + ", circuit=" + circuit
-				+ ", categorieEvenement=" + categorieEvenement + ", activite=" + activite + "]";
+				+ ", prix=" + prix +  "]";
 	}
 
 }
