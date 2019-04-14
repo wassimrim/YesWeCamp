@@ -3,20 +3,31 @@ package com.camping.YesWeCamp.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.camping.YesWeCamp.Repository.EvenementRestRepository;
 import com.camping.YesWeCamp.Repository.InscriptionRestRepository;
+import com.camping.YesWeCamp.Repository.UserRestRepository;
 import com.camping.YesWeCamp.models.Evenement;
 import com.camping.YesWeCamp.models.Inscription;
+import com.camping.YesWeCamp.models.InscriptionIdentity;
 import com.camping.YesWeCamp.models.User;
 
 @Component
 public class InscriptionService {
 
 	private final InscriptionRestRepository inscriptionRepository;
+	private final UserRestRepository userRepository;
+	private final EvenementRestRepository evenementRepository;
 
-	public InscriptionService(InscriptionRestRepository inscriptionRepository) {
+	public InscriptionService(InscriptionRestRepository inscriptionRepository, UserRestRepository userRepository,
+			EvenementRestRepository evenementRepository) {
 		super();
 		this.inscriptionRepository = inscriptionRepository;
+		this.userRepository = userRepository;
+		this.evenementRepository = evenementRepository;
 	}
 
 	public Inscription addInscription(Inscription inscription) {
@@ -32,24 +43,32 @@ public class InscriptionService {
 		return Optional.of(inscriptions);
 	}
 
-	public Optional<Inscription> getInscriptionByUserId(User user) {
-		return inscriptionRepository.findByUser(user);
+	public Optional<Inscription> getInscriptionById(InscriptionIdentity inscrptionIdentity) {
+		return inscriptionRepository.findById(inscrptionIdentity);
 	}
 
-	public Optional<Inscription> getInscriptionByEvenementId(Evenement evenement) {
-		return inscriptionRepository.findByEvenement(evenement);
+	public List<Inscription> getInscriptionByUserId(String idUser) {
+
+		Optional<User> user = userRepository.findById(Long.parseLong(idUser));
+
+		return inscriptionRepository.findByUserOrderByIdAsc(user.get());
 	}
 
-	public Optional< Inscription> getInscriptionByUserIdAndEvenementId(User user,Evenement evenement) {
-		return inscriptionRepository.findByUserAndEvenement(user, evenement);
+	public List<Inscription> getInscriptionByEvenementId(String idEvenement) {
+
+		Optional<Evenement> evenement = evenementRepository.findById(Long.parseLong(idEvenement));
+
+		return inscriptionRepository.findByEvenementOrderByIdAsc(evenement.get());
 	}
 
-	public void deleteInscriptionByUserAndEvenement(User user,Evenement evenement) {
+	/*
+	 * public Optional< Inscription> getInscriptionByUserIdAndEvenementId(User
+	 * user,Evenement evenement) { return
+	 * inscriptionRepository.findByUserAndEvenement(user, evenement); }
+	 **/
+	public void deleteInscriptionById(InscriptionIdentity iIdentity) {
 
-		inscriptionRepository.deleteByUserAndEvenement(user, evenement);
+		inscriptionRepository.deleteById(iIdentity);
 
 	}
-
-	
-
 }
