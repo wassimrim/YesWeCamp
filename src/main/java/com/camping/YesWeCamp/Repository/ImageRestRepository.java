@@ -1,4 +1,4 @@
-package com.camping.YesWeCamp.Repository;
+/*package com.camping.YesWeCamp.Repository;
 
 
 import java.util.List;
@@ -14,4 +14,4 @@ public interface ImageRestRepository extends    PagingAndSortingRepository<Image
 	
 	List<Image> findByUser(String user);
 
-}
+}*/

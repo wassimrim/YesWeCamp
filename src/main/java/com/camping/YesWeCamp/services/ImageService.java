@@ -1,4 +1,4 @@
-package com.camping.YesWeCamp.services;
+/*package com.camping.YesWeCamp.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,4 +58,4 @@ public class ImageService {
 		return listImages;
 	}
 
-}
+}*/

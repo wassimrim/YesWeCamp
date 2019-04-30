@@ -48,12 +48,14 @@ public class UserService {
 		User userFound = userRepository.findById(id).get();
 		
 		
-		userFound.setNom(user.getNom());
-		userFound.setPrenom(user.getPrenom());
-		userFound.setMail(user.getMail());
-		userFound.setNumTel(user.getNumTel());
-		userFound.setDateNaissance(user.getDateNaissance());
-		userFound.setRole(user.getRole());
+		userFound.setName(user.getName());
+		userFound.setLastname(user.getLastname());
+		userFound.setEmail(user.getEmail());
+		userFound.setNumber(user.getNumber());
+		userFound.setBirthDay(user.getBirthDay());
+		userFound.setImage(user.getImage());
+		userFound.setPassword(user.getPassword());
+		userFound.setRoles(user.getRoles());
 		
 		userRepository.save(userFound);
 		

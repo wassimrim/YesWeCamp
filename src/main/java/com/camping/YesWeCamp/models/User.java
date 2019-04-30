@@ -5,17 +5,25 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import javax.persistence.UniqueConstraint;
+import javax.persistence.JoinColumn;
 
 
 @Entity
-@Table(name="user")
+@Table(name = "user", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {
+            "username"
+        }),
+        @UniqueConstraint(columnNames = {
+            "email"
+        })
+})
 //@JsonIgnoreProperties({"image","article","inscription"})
 public class User {
 
@@ -23,126 +31,121 @@ public class User {
 	@Id
 	@GeneratedValue(strategy =javax.persistence.GenerationType.IDENTITY)
 	private Long id;
-	private String nom;
-	private String prenom;
-	private String mail;
-	private String numTel;
-	private LocalDate dateNaissance;
-	private String role;
-	//@OneToMany(mappedBy="user",cascade = CascadeType.ALL)
-	//@JsonBackReference
-	//private Set<Image> image;
-
-	//@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	//@JsonBackReference
-	//private Set<Article> article;
-	
-	//@OneToMany(mappedBy="user",cascade=CascadeType.ALL,orphanRemoval=true)
-	//@JsonBackReference
-	//private Set<Inscription> inscription;
-	
+	private String name;
+	private String lastname;
+	private String username;
+	private String email;
+	private String password;
+	private String number;
+	private LocalDate birthDay;
+	private String image;
+	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinTable(name="user_roles",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="role_id"))
+	private Set<Role> roles= new HashSet<>();
 	
 	public User() {
 		super();
 	}
-	
-	
-	public User(Long id, String nom, String prenom, String mail, String numTel, LocalDate dateNaissance, String role) {
+
+	public User(String name, String lastname, String username, String email, String password, String number,
+			LocalDate birthDay, String image) {
 		super();
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.numTel = numTel;
-		this.dateNaissance = dateNaissance;
-		this.role = role;
-		//this.image = image;
-		//this.article = article;
-		//this.inscription=new HashSet<>();
-	}
-
-	
-	public Long getId() {
-		return id;
-	}
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-	public String getMail() {
-		return mail;
-	}
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-	public String getNumTel() {
-		return numTel;
-	}
-	public void setNumTel(String numTel) {
-		this.numTel = numTel;
-	}
-	public LocalDate getDateNaissance() {
-		return dateNaissance;
-	}
-	public void setDateNaissance(LocalDate dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	/*public Set<Image> getImage() {
-		return image;
-	}
-
-	public void setImage(Set<Image> image) {
+		this.name = name;
+		this.lastname = lastname;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.number = number;
+		this.birthDay = birthDay;
 		this.image = image;
 	}
 
-	public Set<Article> getArticle() {
-		return article;
+	public Long getId() {
+		return id;
 	}
 
-	public void setArticle(Set<Article> article) {
-		this.article = article;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	
-	
-	
-	
-	
-	
-	public Set<Inscription> getInscription() {
-		return inscription;
+	public String getName() {
+		return name;
 	}
 
-
-	public void setInscription(Set<Inscription> inscription) {
-		this.inscription = inscription;
+	public void setName(String name) {
+		this.name = name;
 	}
-*/
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public LocalDate getBirthDay() {
+		return birthDay;
+	}
+
+	public void setBirthDay(LocalDate birthDay) {
+		this.birthDay = birthDay;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", numTel=" + numTel
-				+ ", dateNaissance=" + dateNaissance + ", role=" + role +  "]";
+		return "User [id=" + id + ", name=" + name + ", lastname=" + lastname + ", username=" + username + ", email="
+				+ email + ", password=" + password + ", number=" + number + ", birthDay=" + birthDay + ", image="
+				+ image + ", roles=" + roles + "]";
 	}
-
-	
-	
-	
 	
 	
 	

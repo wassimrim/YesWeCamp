@@ -1,4 +1,4 @@
-package com.camping.YesWeCamp.controllers;
+/*package com.camping.YesWeCamp.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +47,7 @@ public class ImageController {
 		/*
 		 * log.info("information:" + ImageService.getImageById(Long.parseLong(ImageId)));
 		 * log.info("///////////////////");
-		 */
+		
 		if (!imageService.getImageById(Long.parseLong(imageId)).isPresent()) {
 			return ResponseEntity.noContent().build();
 		} else {
@@ -97,7 +97,7 @@ public class ImageController {
 			imageService.deleteImage(Long.parseLong(imageId));
 
 			/*URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(ImageId)
-					.toUri();*/
+					.toUri();
 
 			// Status
 
@@ -108,4 +108,4 @@ public class ImageController {
 		}
 	}
 
-}
+}*/

@@ -1,4 +1,4 @@
-package com.camping.YesWeCamp.models;
+/*package com.camping.YesWeCamp.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -171,4 +171,4 @@ public class Image {
 	
 	
 	
-}
+}*/
