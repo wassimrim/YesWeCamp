@@ -49,6 +49,8 @@ public class MaterielService {
 		
 		
 		materielFound.setLabelle(materiel.getLabelle());
+		materielFound.setImage(materiel.getImage());
+
 		
 		materielRepository.save(materielFound);
 		

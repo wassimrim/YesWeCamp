@@ -52,6 +52,7 @@ public class ArticleService {
 		articleFound.setDescription(article.getDescription());
 		articleFound.setPrix(article.getPrix());
 		articleFound.setQuantite(article.getQuantite());
+		articleFound.setImage(article.getImage());
 		
 		articleRepository.save(articleFound);
 		

@@ -50,6 +50,7 @@ public class EvenementService {
 		evenementFound.setDescription(Evenement.getDescription());
 		evenementFound.setType(Evenement.getType());
 		evenementFound.setPrix(Evenement.getPrix());
+		evenementFound.setImage(Evenement.getImage());
 
 		evenementRepository.save(evenementFound);
 

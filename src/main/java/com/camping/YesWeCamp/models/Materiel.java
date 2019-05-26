@@ -24,6 +24,7 @@ public class Materiel {
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Long id;
 	private String labelle;
+	private String image;
 	
 	
 	//@OneToMany(targetEntity=Image.class,mappedBy="materiel",fetch=FetchType.EAGER)
@@ -45,11 +46,12 @@ public class Materiel {
 	
 
 
-	public Materiel(Long id, String labelle, Categorie categorie) {
+	public Materiel(Long id, String labelle, Categorie categorie,String image) {
 		super();
 		this.id = id;
 		this.labelle = labelle;
 		this.categorie = categorie;
+		this.image=image;
 	}
 
 
@@ -73,8 +75,12 @@ public class Materiel {
 
 
 
-/*
-	public Set<Image> getImage() {
+
+
+
+
+
+	public String getImage() {
 		return image;
 	}
 
@@ -82,10 +88,10 @@ public class Materiel {
 
 
 
-	public void setImage(Set<Image> image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
-*/
+
 
 
 

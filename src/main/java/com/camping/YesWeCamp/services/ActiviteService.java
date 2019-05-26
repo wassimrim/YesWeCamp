@@ -50,6 +50,7 @@ public class ActiviteService {
 		
 		activiteFound.setLabelle(activite.getLabelle());
 		activiteFound.setDescription(activite.getDescription());
+		activiteFound.setImage(activite.getImage());
 		
 		activiteRepository.save(activiteFound);
 		

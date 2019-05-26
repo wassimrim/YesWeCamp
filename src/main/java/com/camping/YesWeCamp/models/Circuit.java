@@ -27,6 +27,7 @@ public class Circuit {
 	private Long id;
 	private String description;
 	private String type;
+	private String image;
 	
 	//@OneToMany(mappedBy="circuit",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	//@JsonBackReference
@@ -44,12 +45,12 @@ public class Circuit {
 	}
 	
 	
-	public Circuit(Long id, String description, String type, Evenement evenement) {
+	public Circuit(Long id, String description, String type, Evenement evenement,String image) {
 		super();
 		this.id = id;
 		this.description = description;
 		this.type = type;
-		//this.image = image;
+		this.image = image;
 		this.evenement = evenement;
 	}
 
@@ -70,17 +71,19 @@ public class Circuit {
 		return id;
 	}
 
+	
 
-/*	public Set<Image> getImage() {
+
+	public String getImage() {
 		return image;
 	}
 
 
-	public void setImage(Set<Image> image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
-*/
+
 	public Evenement getEvenement() {
 		return evenement;
 	}

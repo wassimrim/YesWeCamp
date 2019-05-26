@@ -26,6 +26,7 @@ public class Article {
 	private String description;
 	private float prix;
 	private int quantite;
+	private String image;
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	//@JsonManagedReference
@@ -42,7 +43,7 @@ public class Article {
 
 
 
-	public Article(Long id, String labelle, String description, float prix, int quantite, User user) {
+	public Article(Long id, String labelle, String description, float prix, int quantite, User user,String image) {
 		super();
 		this.id = id;
 		this.labelle = labelle;
@@ -50,6 +51,7 @@ public class Article {
 		this.prix = prix;
 		this.quantite = quantite;
 		this.user = user;
+		this.image=image;
 	}
 
 
@@ -104,15 +106,18 @@ public class Article {
 
 
 
-	/*public Set<Image> getImage() {
+
+
+
+	public String getImage() {
 		return image;
 	}
 
 
 
-	public void setImage(Set<Image> image) {
+	public void setImage(String image) {
 		this.image = image;
-	}*/
+	}
 
 
 

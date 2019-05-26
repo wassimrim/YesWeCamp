@@ -42,12 +42,10 @@ public class UserService {
 
 	}
 
-	public User updateUser(Long id,User user) {
-		
-		
+	public User updateUser(Long id, User user) {
+
 		User userFound = userRepository.findById(id).get();
-		
-		
+
 		userFound.setName(user.getName());
 		userFound.setLastname(user.getLastname());
 		userFound.setEmail(user.getEmail());
@@ -56,10 +54,15 @@ public class UserService {
 		userFound.setImage(user.getImage());
 		userFound.setPassword(user.getPassword());
 		userFound.setRoles(user.getRoles());
-		
+
 		userRepository.save(userFound);
-		
+
 		return userFound;
+	}
+
+	public Optional<User> getUserByUserName(String username) {
+		Optional<User> user = userRepository.findByUsername(username);
+		return user;
 	}
 
 }

@@ -53,6 +53,7 @@ public class HebergementService {
 		hebergementFound.setNumTel(hebergement.getNumTel());
 		hebergementFound.setType(hebergement.getType());
 		hebergementFound.setCapacite(hebergement.getCapacite());
+		hebergementFound.setImage(hebergement.getImage());
 		
 		hebergementRepository.save(hebergementFound);
 		

@@ -49,6 +49,7 @@ public class CategorieService {
 		
 		
 		categorieFound.setLabelle(categorie.getLabelle());
+		categorieFound.setImage(categorie.getImage());
 		
 		categorieRepository.save(categorieFound);
 		

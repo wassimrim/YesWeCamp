@@ -26,6 +26,7 @@ public class Activite {
 	private Long id;
 	private String labelle;
 	private String description;
+	private String image;
 	
 	@ManyToOne
 	@JoinColumn(name="evenement_id")
@@ -42,12 +43,13 @@ public class Activite {
 
 	
 
-	public Activite(Long id, String labelle, String description, Evenement evenement) {
+	public Activite(Long id, String labelle, String description, Evenement evenement,String image) {
 		super();
 		this.id = id;
 		this.labelle = labelle;
 		this.description = description;
 		this.evenement = evenement;
+		this.image=image;
 	}
 
 
@@ -81,18 +83,19 @@ public class Activite {
 	public void setEvenement(Evenement evenement) {
 		this.evenement = evenement;
 	}
+	
 
 
 
-	/*public Set<Image> getImage() {
+	public String getImage() {
 		return image;
 	}
 
 
 
-	public void setImage(Set<Image> image) {
+	public void setImage(String image) {
 		this.image = image;
-	}*/
+	}
 
 
 

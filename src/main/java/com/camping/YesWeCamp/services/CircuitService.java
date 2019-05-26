@@ -48,7 +48,7 @@ public class CircuitService {
 
 		circuitFound.setDescription(circuit.getDescription());
 		circuitFound.setType(circuit.getType());
-		//circuitFound.setImage(circuit.getImage());
+		circuitFound.setImage(circuit.getImage());
 		circuitFound.setEvenement(circuit.getEvenement());
 
 		circuitRepository.save(circuitFound);

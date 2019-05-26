@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
 	private Long id;
 	private String labelle;
+	private String image;
 	//@OneToMany(mappedBy="categorie")
 	//@JsonBackReference
 	//private Set<CategerorieEvenement> categorieEvenement;
@@ -34,11 +35,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	public Categorie() {
 		super();
 	}
-	public Categorie(Long id, String labelle) {
+	public Categorie(Long id, String labelle,String image) {
 		super();
 		this.id = id;
 		this.labelle = labelle;
+	    this.image=image;
 	}
+	
 	public String getLabelle() {
 		return labelle;
 	}
@@ -61,9 +64,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 		this.materiel = materiel;
 	}
 	*/
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Categorie [id=" + id + ", labelle=" + labelle + "]";
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	

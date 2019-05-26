@@ -26,6 +26,7 @@ public class Hebergement {
 	private String numTel;
 	private String type;
 	private int capacite;
+	private String image;
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="evenement_id")
@@ -36,7 +37,7 @@ public class Hebergement {
 		super();
 	}
 	
-	public Hebergement(Long id, String labelle, String adresse, String numTel, String type, int capacite,
+	public Hebergement(Long id, String labelle,String image, String adresse, String numTel, String type, int capacite,
 			Evenement evenement) {
 		super();
 		this.id = id;
@@ -46,6 +47,7 @@ public class Hebergement {
 		this.type = type;
 		this.capacite = capacite;
 		this.evenement = evenement;
+		this.image=image;
 	}
 
 	public Long getId() {
@@ -89,6 +91,15 @@ public class Hebergement {
 
 	public void setEvenement(Evenement evenemet) {
 		this.evenement = evenemet;
+	}
+
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	@Override
